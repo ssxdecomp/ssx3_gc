@@ -16,7 +16,7 @@ typedef unsigned int uint;
 float AIfrand(float min, float max);
 uint _AIrand(void);
 uint BXrand(void);
-void BXsrand(uint param_1);
+void BXsrand(uint);
 uint GetHashValue32(char* str);
 uint tHashName32_scoperes_getHashValue(uint*, char*);
 
@@ -50,20 +50,15 @@ uint GetHashValue32(char* str){
     return tHashName32_scoperes_getHashValue((uint*)hash, str);
 }
 
-
 uint tHashName32_scoperes_getHashValue(uint* out, char* str){
     uint hash = 0;
     uint top;
-    uint shifted;
 
     while (*str) {
         hash = (hash << 4) + *str++;
         top = hash & 0xF0000000;
-
         if (top != 0) {
-            shifted = top >> 23;
-            hash ^= shifted;
-            hash ^= top;
+            hash = (hash ^ (top >> 23)) ^ top;
         }
     }
 
