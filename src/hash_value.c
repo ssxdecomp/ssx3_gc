@@ -14,6 +14,8 @@ Real split
 
 typedef unsigned int uint;
 
+void AIsetseed(unsigned int *);
+void AIgetseed(unsigned int *);
 float AIrangernd(float min, float max);
 float AIfrand(float min, float max);
 uint _AIrand(void);
@@ -22,10 +24,24 @@ void BXsrand(uint);
 uint GetHashValue32(char* str);
 uint tHashName32_scoperes_getHashValue(uint*, char*);
 
-char AIrandom[24];
+char InitSeed[24];
 char BXrandom[24];
+char AIrandom[24];
 float lbl_803DF078 = 1.0;
 float lbl_803DF094 = -1.0; // todo: add to split
+
+
+void cRandom_scoperes_cRandom(uint param_1) {
+  MEM_copy(param_1, InitSeed, 0x18);
+}
+
+void AIsetseed(unsigned int * param_1) {
+  MEM_copy(&AIrandom, param_1, 0x18);
+}
+
+void AIgetseed(unsigned int * param_1) {
+  MEM_copy(param_1, &AIrandom, 0x18);
+}
 
 float AIrangernd(float min, float max) {
   return min + max * AIfrand(lbl_803DF094,lbl_803DF078);
