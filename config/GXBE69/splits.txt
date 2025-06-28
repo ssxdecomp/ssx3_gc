@@ -17,5 +17,5 @@ visualfx/crowdrender2d.c:
 	.text       start:0x801B23E4 end:0x801B2464
 
 hash_value.c:
-	.text       start:0x801CCF90 end:0x801CD02C
+	.text       start:0x801CCF68 end:0x801CD02C
 	.bss        start:0x8035DE2C end:0x8035DE44
