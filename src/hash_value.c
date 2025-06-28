@@ -14,6 +14,7 @@ Real split
 
 typedef unsigned int uint;
 
+void cRandom_scoperes_seed();
 void AIsetseed(unsigned int *);
 void AIgetseed(unsigned int *);
 float AIrangernd(float min, float max);
@@ -30,6 +31,16 @@ char AIrandom[24];
 float lbl_803DF078 = 1.0;
 float lbl_803DF094 = -1.0; // todo: add to split
 
+// void cRandom_scoperes_seed(uint *param_1, uint param_2) {
+void cRandom_scoperes_seed(char *param_1, uint param_2) {
+    uint* out = (uint*)param_1;
+    out[0] = param_2 + -0x0DD2F1AA;
+    out[1] = param_2 + -0x77CED917;
+    out[2] = param_2 + -0x39DB22D1;
+    out[3] = param_2 +  0x0702C49C;
+    out[4] = param_2 + -0x61CAC083;
+    out[5] = param_2 +  0x6FDF3B64;
+}
 
 void cRandom_scoperes_cRandom(uint param_1) {
   MEM_copy(param_1, InitSeed, 0x18);
