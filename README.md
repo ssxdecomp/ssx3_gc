@@ -13,7 +13,8 @@ SSX 3 (GC)
 [Discord Badge]: https://img.shields.io/discord/727908905392275526?color=%237289DA&logo=discord&logoColor=%23FFFFFF
 [discord]: https://discord.gg/hKx3FJJgrV -->
 
-A work-in-progress decompilation of SSX 3 (GC).
+A work-in-progress decompilation of SSX 3 (GC).  
+For other games and platforms see [ssxdecomp](https://github.com/ssxdecomp)
 
 This repository does **not** contain any game assets or assembly whatsoever. An existing copy of the game is required.
 
@@ -30,7 +31,7 @@ Windows
 On Windows, it's **highly recommended** to use native tooling. WSL or msys2 are **not** required.  
 When running under WSL, [objdiff](#diffing) is unable to get filesystem notifications for automatic rebuilds.
 
-- Install [Python](https://www.python.org/downloads/) and add it to `%PATH%`.
+- Install [Python](https://www.python.org/downloads) and add it to `%PATH%`.
   - Also available from the [Windows Store](https://apps.microsoft.com/store/detail/python-311/9NRWMJP3717K).
 - Download [ninja](https://github.com/ninja-build/ninja/releases) and add it to `%PATH%`.
   - Quick install via pip: `pip install ninja`
@@ -72,7 +73,7 @@ Building
   git clone https://github.com/my/repo.git
   ```
 
-- Copy your game's disc image to `orig/GAMEID`.
+- Copy your game's disc image to `orig/GXBE69`.
   - Supported formats: ISO (GCM), RVZ, WIA, WBFS, CISO, NFS, GCZ, TGC
   - After the initial build, the disc image can be deleted to save space.
 
@@ -82,7 +83,7 @@ Building
   python configure.py
   ```
 
-  To use a version other than `GAMEID` (USA), specify it with `--version`.
+<!--   To use a version other than `GXBE69` (USA), specify it with `--version`. -->
 
 - Build:
 

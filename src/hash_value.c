@@ -6,13 +6,20 @@
 
 typedef unsigned int uint;
 
-uint GetHashValue32(char* param_1);
+uint GetHashValue32(char* str);
 uint tHashName32_scoperes_getHashValue(uint*, char*);
+//void cRandom_scoperes_seed(uint param_1, uint param_2);
 
+int lbl_8035DE2C;
 
-uint GetHashValue32(char* param_1){
+void BXsrand(uint param_1){
+    cRandom_scoperes_seed(lbl_8035DE2C, param_1);
+    return;
+}
+
+uint GetHashValue32(char* str){
     char hash[4];
-    return tHashName32_scoperes_getHashValue((uint*)hash, param_1);
+    return tHashName32_scoperes_getHashValue((uint*)hash, str);
 }
 
 uint tHashName32_scoperes_getHashValue(uint* out, char* str){
