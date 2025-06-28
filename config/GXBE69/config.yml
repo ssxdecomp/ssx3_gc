@@ -1,0 +1,10 @@
+# See config.example.yml for documentation.
+object_base: orig/GXBE69
+object: sys/main.dol
+hash: 5aae61dc3bd5c7abb92d158c4477f1a9ca4de385
+symbols: config/GXBE69/symbols.txt
+splits: config/GXBE69/splits.txt
+
+# Change this to match the linker version.
+# See config.example.yml for a list.
+mw_comment_version: 11
