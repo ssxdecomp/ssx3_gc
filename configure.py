@@ -288,7 +288,7 @@ config.libs = [
         "host": True,
         "objects": [
             Object(NonMatching, "hash_value.c"),
-            Object(NonMatching, "visualfx/crowdrender2d.c")
+            Object(Matching, "visualfx/crowdrender2d.c")
         ]
     },
     {
