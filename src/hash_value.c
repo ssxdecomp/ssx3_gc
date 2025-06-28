@@ -1,6 +1,7 @@
 /*
 Real split 
 
+0x801CCE84 AIrangernd
 0x801CCED8 AIfrand
 0x801ccf40 _AIrand
 0x801ccf68 BXrand
@@ -13,6 +14,7 @@ Real split
 
 typedef unsigned int uint;
 
+float AIrangernd(float min, float max);
 float AIfrand(float min, float max);
 uint _AIrand(void);
 uint BXrand(void);
@@ -23,7 +25,11 @@ uint tHashName32_scoperes_getHashValue(uint*, char*);
 char AIrandom[24];
 char BXrandom[24];
 float lbl_803DF078 = 1.0;
+float lbl_803DF094 = -1.0; // todo: add to split
 
+float AIrangernd(float min, float max) {
+  return min + max * AIfrand(lbl_803DF094,lbl_803DF078);
+}
 
 float AIfrand(float min, float max) {
     float range = max - min;
