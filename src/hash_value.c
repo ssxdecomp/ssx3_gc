@@ -11,10 +11,8 @@ uint tHashName32_scoperes_getHashValue(uint*, char*);
 //extern void cRandom_scoperes_seed(uint *param_1, uint param_2);
 
 //extern uint* BXrandom; 
-extern char AIrandom[24]; // 24 bytes long
-extern char BXrandom[24]; // 24 bytes long
-
-extern uint _AIrand(void);
+char AIrandom[24]; // 24 bytes long
+char BXrandom[24]; // 24 bytes long
 
 
 uint _AIrand(void){
