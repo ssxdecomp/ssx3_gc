@@ -39,16 +39,25 @@ const float lbl_803DF07C = 0.0;
 const float lbl_803DF080 = 2.0;
 const float lbl_803DF084 = 0.5;
 const float lbl_803DF088 = 0.001;
-const float lbl_803DF08C = 0.99999;//0.999989986419678;
-const float lbl_803DF090 = 3.14159265359;
-const float lbl_803DF094 = -1.0; // todo: add to split
+const float lbl_803DF08C = 0.99999;
+const float lbl_803DF090 = 3.14159265;
+const float lbl_803DF094 = -1.0;
 
 uint BXrandom[6];
 uint AIrandom[6];
 
 
+uint lbl_803DA9DC;
+//extern lbl_803D96C8;
+//static const char lbl_803D96C8[] = "default";
+static const char lbl_803D96C8[] __attribute__((section(".sdata"))) = "default";
 
 
+
+void operator_space_new_801CCC50(uint param_1){
+  fn_801CCB88(param_1,lbl_803D96C8,lbl_803DA9DC,0);
+  return;
+}
 
 float AIrangernd(float min, float max) {
   return min + max * AIfrand(lbl_803DF094,lbl_803DF078);
@@ -74,10 +83,55 @@ void BXsrand(uint param_1){
     cRandom_scoperes_seed(BXrandom, param_1);
 }
 
+uint cRandom_scoperes_random(uint *param_1) {
+    uint r0, r4, r5, r6, r7;
 
-uint cRandom_scoperes_random(uint *param_1){
-    return 0;
+    r4 = param_1[5];
+    r5 = param_1[4];
+    r7 = r4 + r5;
+
+    r0 = 0;
+    if (r7 < r4 || r7 < r5) r0 = 1;
+
+    param_1[4] = r7;
+
+    r5 = param_1[3];
+    r6 = r5 + r0;
+    r6 = r7 + r6;
+    param_1[3] = r6;
+
+    r5 = param_1[2];
+    r0 = (r6 < r7) ? 1 : 0;
+    r7 = r6 + r5 + r0;
+    param_1[2] = r7;
+
+    r5 = param_1[1];
+    r0 = (r7 < r6) ? 1 : 0;
+    r6 = r7 + r5 + r0;
+    param_1[1] = r6;
+
+    r5 = param_1[0];
+    r0 = (r6 < r7) ? 1 : 0;
+    r5 = r6 + r5 + r0;
+    param_1[0] = r5;
+
+    // Increment param_1[5..0] with carry propagation
+    if (++param_1[5] == 0) {
+        if (++param_1[4] == 0) {
+            if (++param_1[3] == 0) {
+                if (++param_1[2] == 0) {
+                    if (++param_1[1] == 0) {
+                        ++param_1[0];
+                        ++r5;
+                    }
+                }
+            }
+        }
+    }
+
+    return r5;
 }
+
 
 
 void cRandom_scoperes_seed(uint *param_1, uint param_2) {
@@ -101,10 +155,6 @@ void AIsetseed(unsigned int * param_1) {
 void AIgetseed(unsigned int * param_1) {
   MEM_copy(param_1, &AIrandom, 0x18);
 }
-
-
-
-
 
 
 

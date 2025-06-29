@@ -23,7 +23,7 @@ int cCrowdRender2D_scoperes__tilde__cCrowdRender2D(int param_1, short param_2){
   if (param_1 != 0) {
     cCrowdRender2D_scoperes_purge();//fn_801B2290(); // purge()
     if (0 < param_2) {
-      operator_delete(param_1);
+      operator_space_delete(param_1);
     }
   }
   return param_1;
