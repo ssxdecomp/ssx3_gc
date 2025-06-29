@@ -20,4 +20,4 @@ hash_value.c:
 	.text       start:0x801CCC7C end:0x801CD02C
 	.rodata     start:0x802C8DA8 end:0x802C8DC0
 	.bss        start:0x8035DE2C end:0x8035DE5C
-	.sdata2     start:0x803DF078 end:0x803DF07C
+	.sdata2     start:0x803DF078 end:0x803DF098

@@ -35,10 +35,20 @@ const uint InitSeed[6] = {
     0x9E353F7D, 0x6FDF3B64
 };
 const float lbl_803DF078 = 1.0;
+const float lbl_803DF07C = 0.0;
+const float lbl_803DF080 = 2.0;
+const float lbl_803DF084 = 0.5;
+const float lbl_803DF088 = 0.001;
+const float lbl_803DF08C = 0.99999;//0.999989986419678;
+const float lbl_803DF090 = 3.14159265359;
 const float lbl_803DF094 = -1.0; // todo: add to split
 
 uint BXrandom[6];
 uint AIrandom[6];
+
+
+
+
 
 float AIrangernd(float min, float max) {
   return min + max * AIfrand(lbl_803DF094,lbl_803DF078);
