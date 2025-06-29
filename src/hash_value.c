@@ -30,11 +30,15 @@ const uint InitSeed[6] = {
     0xC624DD2F, 0x0702C49C,
     0x9E353F7D, 0x6FDF3B64
 };
+const float lbl_803DF078 = 1.0;
+const float lbl_803DF094 = -1.0; // todo: add to split
 
 uint BXrandom[6];
 uint AIrandom[6];
-const float lbl_803DF078 = 1.0;
-const float lbl_803DF094 = -1.0; // todo: add to split
+
+void BXsrand(uint param_1){
+    cRandom_scoperes_seed(BXrandom, param_1);
+}
 
 void cRandom_scoperes_seed(uint *param_1, uint param_2) {
     //uint* out = (uint*)param_1;
@@ -76,10 +80,6 @@ uint _AIrand(void){
 
 uint BXrand(void){
     return cRandom_scoperes_random(&BXrandom);
-}
-
-void BXsrand(uint param_1){
-    cRandom_scoperes_seed(BXrandom, param_1);
 }
 
 uint GetHashValue32(char* str){
