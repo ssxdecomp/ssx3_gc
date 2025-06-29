@@ -1,6 +1,9 @@
 /*
-Real split 
 
+0x801CCC7C cRandom::random
+0x801CCDB0 cRandom::seed
+0x801CCE28 AIsetseed
+0x801CCE58 AIgetseed
 0x801CCE84 AIrangernd
 0x801CCED8 AIfrand
 0x801ccf40 _AIrand
@@ -14,6 +17,7 @@ Real split
 
 typedef unsigned int uint;
 
+uint cRandom_scoperes_random();
 void cRandom_scoperes_seed();
 void AIsetseed(unsigned int *);
 void AIgetseed(unsigned int *);
@@ -36,9 +40,35 @@ const float lbl_803DF094 = -1.0; // todo: add to split
 uint BXrandom[6];
 uint AIrandom[6];
 
+float AIrangernd(float min, float max) {
+  return min + max * AIfrand(lbl_803DF094,lbl_803DF078);
+}
+
+float AIfrand(float min, float max) {
+    float range = max - min;
+    uint bits = (_AIrand() & 0x007FFFFF) | 0x3F800000; // Get random bits and force float exponent for 1.0f
+    float f = *(float*)&bits; // reinterpret bits as float (gives [1.0, 2.0))
+    float norm = f - lbl_803DF078; // subtract 1.0f using SDA float to get [0.0, 1.0)
+    return norm * range + min;
+}
+
+uint _AIrand(void){
+    return cRandom_scoperes_random(AIrandom);
+}
+
+uint BXrand(void){
+    return cRandom_scoperes_random(BXrandom);
+}
+
 void BXsrand(uint param_1){
     cRandom_scoperes_seed(BXrandom, param_1);
 }
+
+
+uint cRandom_scoperes_random(uint *param_1){
+    return 0;
+}
+
 
 void cRandom_scoperes_seed(uint *param_1, uint param_2) {
     //uint* out = (uint*)param_1;
@@ -62,25 +92,11 @@ void AIgetseed(unsigned int * param_1) {
   MEM_copy(param_1, &AIrandom, 0x18);
 }
 
-float AIrangernd(float min, float max) {
-  return min + max * AIfrand(lbl_803DF094,lbl_803DF078);
-}
 
-float AIfrand(float min, float max) {
-    float range = max - min;
-    uint bits = (_AIrand() & 0x007FFFFF) | 0x3F800000; // Get random bits and force float exponent for 1.0f
-    float f = *(float*)&bits; // reinterpret bits as float (gives [1.0, 2.0))
-    float norm = f - lbl_803DF078; // subtract 1.0f using SDA float to get [0.0, 1.0)
-    return norm * range + min;
-}
 
-uint _AIrand(void){
-    return cRandom_scoperes_random(&AIrandom);
-}
 
-uint BXrand(void){
-    return cRandom_scoperes_random(&BXrandom);
-}
+
+
 
 uint GetHashValue32(char* str){
     char hash[4];
