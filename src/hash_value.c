@@ -25,21 +25,25 @@ void BXsrand(uint);
 uint GetHashValue32(char* str);
 uint tHashName32_scoperes_getHashValue(uint*, char*);
 
-char InitSeed[24];
-char BXrandom[24];
-char AIrandom[24];
-float lbl_803DF078 = 1.0;
-float lbl_803DF094 = -1.0; // todo: add to split
+const uint InitSeed[6] = {
+    0xF22D0E56, 0x883126E9,
+    0xC624DD2F, 0x0702C49C,
+    0x9E353F7D, 0x6FDF3B64
+};
 
-// void cRandom_scoperes_seed(uint *param_1, uint param_2) {
-void cRandom_scoperes_seed(char *param_1, uint param_2) {
-    uint* out = (uint*)param_1;
-    out[0] = param_2 + -0x0DD2F1AA;
-    out[1] = param_2 + -0x77CED917;
-    out[2] = param_2 + -0x39DB22D1;
-    out[3] = param_2 +  0x0702C49C;
-    out[4] = param_2 + -0x61CAC083;
-    out[5] = param_2 +  0x6FDF3B64;
+uint BXrandom[6];
+uint AIrandom[6];
+const float lbl_803DF078 = 1.0;
+const float lbl_803DF094 = -1.0; // todo: add to split
+
+void cRandom_scoperes_seed(uint *param_1, uint param_2) {
+    //uint* out = (uint*)param_1;
+    param_1[0] = param_2 + 0xF22D0E56;
+    param_1[1] = param_2 + 0x883126E9;
+    param_1[2] = param_2 + 0xC624DD2F;
+    param_1[3] = param_2 + 0x0702C49C;
+    param_1[4] = param_2 + 0x9E353F7D;
+    param_1[5] = param_2 + 0x6FDF3B64;
 }
 
 void cRandom_scoperes_cRandom(uint param_1) {
