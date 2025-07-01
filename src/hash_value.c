@@ -11,7 +11,8 @@
 0x801ccf90 BXsrand
 0x801ccfbc GetHashValue32
 0x801ccfe4 tHashName32::getHashValue
-//end 0x801CD02C
+0x801cd02c cLoadTimer::endload
+//end 0x801cd044
 
 */
 
@@ -42,6 +43,7 @@ const float lbl_803DF088 = 0.001;
 const float lbl_803DF08C = 0.99999;
 const float lbl_803DF090 = 3.14159265;
 const float lbl_803DF094 = -1.0;
+const float lbl_803DF098 = 100.0;
 
 uint BXrandom[6];
 uint AIrandom[6];
@@ -177,4 +179,13 @@ uint tHashName32_scoperes_getHashValue(uint* out, char* str){
 
     *out = hash;
     return *out;
+}
+
+const float lbl_803DF098;
+
+void cLoadTimer_scoperes_endload(float *param_1){
+    param_1[5] = lbl_803DF098;
+    param_1[6] = lbl_803DF07C;
+    param_1[0] = lbl_803DF098;
+    return;
 }
