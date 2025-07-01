@@ -1,5 +1,4 @@
 /*
-
 0x801CCC7C cRandom::random
 0x801CCDB0 cRandom::seed
 0x801CCE28 AIsetseed
@@ -19,6 +18,8 @@
 0x801CD144 fn_801CD144
 0x801CD168 cExecutionMan::checkHalt
 0x801CD1D0 fn_801CD1D0
+0x801CD248 fn_801CD248
+0x801CD314 cAppMan::checkHalt
 */
 
 typedef unsigned int uint;
@@ -237,13 +238,15 @@ void fn_801CD144(){
 // }
 
 typedef struct {
-    char pad[0x2];
+    char pad[0xc];
+    uint ptr;
 } SomeStruct;
 
 //#include <stddef.h> // #include <cstddef>
 #define NULL ((void*)0)
 
-void cExecutionMan_scoperes_checkHalt(SomeStruct* this, int flag) {
+//void cExecutionMan_scoperes_checkHalt(SomeStruct* this, int flag) {
+void cExecutionMan_scoperes_checkHalt(uint *this, int flag) {
     // Save non-volatile registers and link register
     int result;
     
@@ -270,4 +273,12 @@ void fn_801CD1D0(uint *param_1){
     param_1[0] = lbl_802F4D98;
     param_1[1] = 0;
     param_1[2] = 0;
+}
+
+
+void fn_801CD1EC(){
+}
+
+void cAppMan_scoperes_checkHalt(uint *param_1){
+    cExecutionMan_scoperes_checkHalt(param_1 + 0xc, 1);
 }
