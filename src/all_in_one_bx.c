@@ -16,7 +16,8 @@
 0x801CD0BC cLoadTimer::setnextpercent
 0x801cd118 cLoadTimer::startload
 0x801cd138 fn_801CD138
-
+0x801CD144 fn_801CD144
+0x801CD168 cExecutionMan::checkHalt
 */
 
 typedef unsigned int uint;
@@ -221,4 +222,8 @@ void cLoadTimer_scoperes_startload(float param_1, float *param_2){
 
 uint fn_801CD138(){
     return *(uint*)(lbl_803DA9D8 + 0xc);
+}
+
+void fn_801CD144(){
+    fn_801CD248(lbl_803DA9D8);
 }
