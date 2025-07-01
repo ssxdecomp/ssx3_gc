@@ -12,7 +12,9 @@
 0x801ccfbc GetHashValue32
 0x801ccfe4 tHashName32::getHashValue
 0x801cd02c cLoadTimer::endload
-//end 0x801cd044
+0x801CD044 cLoadTimer::update
+0x801CD0BC cLoadTimer::setnextpercent
+//end 0x801CD118
 
 */
 
@@ -44,6 +46,9 @@ const float lbl_803DF08C = 0.99999;
 const float lbl_803DF090 = 3.14159265;
 const float lbl_803DF094 = -1.0;
 const float lbl_803DF098 = 100.0;
+const double lbl_803DF0A0 = 4503601774854144.0; // if split into floats it's 176.0 and -0.0
+const float lbl_803DF0A8 = -1.5;
+const float lbl_803DF0AC = 10.0;
 
 uint BXrandom[6];
 uint AIrandom[6];
@@ -181,11 +186,26 @@ uint tHashName32_scoperes_getHashValue(uint* out, char* str){
     return *out;
 }
 
-const float lbl_803DF098;
 
 void cLoadTimer_scoperes_endload(float *param_1){
     param_1[5] = lbl_803DF098;
     param_1[6] = lbl_803DF07C;
     param_1[0] = lbl_803DF098;
+    return;
+}
+
+
+extern lbl_803DA9D8;
+
+
+void cLoadTimer_scoperes_setnextpercent(float param_1,float *param_2){
+    float _a = lbl_803DF0A8;
+    float _b = lbl_803DF098;
+    param_2[4] = *(float *)(lbl_803DA9D8 + 0x20);
+    param_2[1] = param_2[2];
+    param_2[2] = param_1;
+    param_2[7] = _a / ((param_2[3] * (param_2[2] - param_2[1])) / _b);
+    param_2[5] = param_2[2];
+    param_2[6] = *param_2 - param_2[2];
     return;
 }
