@@ -18,6 +18,7 @@
 0x801cd138 fn_801CD138
 0x801CD144 fn_801CD144
 0x801CD168 cExecutionMan::checkHalt
+0x801CD1D0 fn_801CD1D0
 */
 
 typedef unsigned int uint;
@@ -261,4 +262,12 @@ void cExecutionMan_scoperes_checkHalt(SomeStruct* this, int flag) {
             virtual_func(this);
         }
     }
+}
+
+extern lbl_802F4D98;
+
+void fn_801CD1D0(uint *param_1){
+    param_1[0] = lbl_802F4D98;
+    param_1[1] = 0;
+    param_1[2] = 0;
 }
