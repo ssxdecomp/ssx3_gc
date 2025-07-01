@@ -227,3 +227,38 @@ uint fn_801CD138(){
 void fn_801CD144(){
     fn_801CD248(lbl_803DA9D8);
 }
+
+// ghidra
+// void cExecutionMan_scoperes_checkHalt(int *param_1, char param_2){
+//     if (((code *)param_1[1] != (code *)0x0) && ((*(code *)param_1[1])(param_1[2]), param_2 != '\0')) {
+//       (**(code **)(*param_1 + 0x3c))(param_1);
+//     }
+// }
+
+typedef struct {
+    char pad[0x2];
+} SomeStruct;
+
+//#include <stddef.h> // #include <cstddef>
+#define NULL ((void*)0)
+
+void cExecutionMan_scoperes_checkHalt(SomeStruct* this, int flag) {
+    // Save non-volatile registers and link register
+    int result;
+    
+    // Check for a virtual function pointer at offset 0x4 (maybe a callback)
+    void (*callback)(int) = *(void (**)(int))(this + 0x4);
+    if (callback != NULL) {
+        int arg = *(int*)(this + 0x8);  // maybe a context or data pointer
+        callback(arg);
+        
+        // If `flag` (r4) is non-zero in the low 8 bits
+        if ((flag & 0xFF) != 0) {
+            // Call another virtual function at offset 0x3C of the vtable
+            void (**vtable)() = *(void (***)())this;
+            void (*virtual_func)(void*) = (void (*)(void*))(vtable[0xF]);  // offset 0x3C == index 15
+            //void (*virtual_func)(void*) = (void (*)(void*))(vtable + 0x3c);
+            virtual_func(this);
+        }
+    }
+}
