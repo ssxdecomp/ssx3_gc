@@ -15,7 +15,7 @@
 0x801CD044 cLoadTimer::update
 0x801CD0BC cLoadTimer::setnextpercent
 0x801cd118 cLoadTimer::startload
-//end 0x801CD118
+0x801cd138 fn_801CD138
 
 */
 
@@ -211,13 +211,14 @@ void cLoadTimer_scoperes_setnextpercent(float param_1,float *param_2){
 }
 
 void cLoadTimer_scoperes_startload(float param_1, float *param_2){
-    float fVar1;
+    param_2[3] = param_1;
+    param_2[0] = lbl_803DF07C;
+    param_2[2] = lbl_803DF07C;
+    param_2[5] = lbl_803DF07C;
+    param_2[6] = lbl_803DF07C;
+    param_2[7] = lbl_803DF07C;
+}
 
-    param_2[3] = (float)param_1;
-    fVar1 = 0.0;
-    *param_2 = lbl_803DF07C;
-    param_2[2] = fVar1;
-    param_2[5] = fVar1;
-    param_2[6] = fVar1;
-    param_2[7] = fVar1;
+uint fn_801CD138(){
+    return *(uint*)(lbl_803DA9D8 + 0xc);
 }
