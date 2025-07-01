@@ -287,7 +287,7 @@ config.libs = [
         "progress_category": "game",
         "host": True,
         "objects": [
-            Object(Matching, "hash_value.c"),
+            Object(Matching, "all_in_one_bx.c"),
             Object(Matching, "visualfx/crowdrender2d.c")
         ]
     },
